@@ -1,0 +1,20 @@
+# config.yaml
+
+#Target dir
+location: "/data/2025-08-12_EXP08-12"
+
+#sample prep
+prep:
+  nsample: 500
+
+#Runs to analyze
+samples:
+  - Chip1
+
+#Alignment parameters
+alignment:
+  cutoff: 0.90
+  reference: "Inputs/Target.fasta"
+  umi_tools: "Scripts/umi_tools.sh"
+  grab_umi: "Scripts/grab_umi.py"
+  umi_filter: "Scripts/umi_filter.py"
