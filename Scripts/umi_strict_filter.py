@@ -32,7 +32,7 @@ with open(args.inp, "r") as file:
                 mothers[row[0]][0].append(row[1])
                 mothers[row[0]][1].append(mistake)
         counter+=1
-        if (counter%1000) == 0:
+        if (counter%100000) == 0:
             print(counter)
 
 sortmothers = dict(sorted(mothers.items(), key=lambda item:len(item[1][0]), reverse=True))

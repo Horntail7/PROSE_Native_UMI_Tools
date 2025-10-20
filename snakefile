@@ -108,25 +108,40 @@ rule merge_fastq:
         """
 
 
-rule align:
+rule align_fwd:
     input:
         Templates=config["alignment"]["reference"],
-	script=config["alignment"]["umi_tools"],
+	script=config["alignment"]["umi_tools_fwd"],
 	fastq="results/{chip}/{native}/merged.fastq.gz"		
     output:
-        Aligned_Fwd="results/{chip}/{native}/aligned_Fwd.fastq.gz",
-	Aligned_Rev="results/{chip}/{native}/aligned_Rev.fastq.gz"	
+        "results/{chip}/{native}/aligned_Fwd.fastq.gz"
     resources:
         mem_mb=4000
     shell:
         """
-	sh {input.script} {input.fastq} {output.Aligned_Fwd} {output.Aligned_Rev}
+	sh {input.script} {input.fastq} {output} 
         """
+
+
+rule align_rev:
+    input:
+        Templates=config["alignment"]["reference"],
+	script=config["alignment"]["umi_tools_rev"],
+	fastq="results/{chip}/{native}/merged.fastq.gz"		
+    output:
+        "results/{chip}/{native}/aligned_Rev.fastq.gz"
+    resources:
+        mem_mb=4000
+    shell:
+        """
+	sh {input.script} {input.fastq} {output} 
+        """
+
 
 rule grab_umi:
     input:
         Aligned_Fwd="results/{chip}/{native}/aligned_Fwd.fastq.gz",
-	Aligned_Rev="results/{chip}/{native}/aligned_Rev.fastq.gz",	
+	Aligned_Rev="results/{chip}/{native}/aligned_Rev.fastq.gz",
 	script=config["alignment"]["grab_umi"]
     output:
         "results/{chip}/{native}/umis.tsv"

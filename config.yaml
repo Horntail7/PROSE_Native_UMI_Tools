@@ -1,7 +1,7 @@
 # config.yaml
 
 #Target dir
-location: "/data/2025-08-12_EXP08-12"
+location: "/data/2025-10-10_EXP10-10"
 
 #sample prep
 prep:
@@ -15,6 +15,7 @@ samples:
 alignment:
   cutoff: 0.90
   reference: "Inputs/Target.fasta"
-  umi_tools: "Scripts/umi_tools.sh"
+  umi_tools_fwd: "Scripts/umi_tools_fwd.sh"
+  umi_tools_rev: "Scripts/umi_tools_rev.sh"
   grab_umi: "Scripts/grab_umi.py"
   umi_filter: "Scripts/umi_strict_filter.py"
